@@ -13,8 +13,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         $users = [
-            ['name' => 'librarian', 'email' => 'librarian@example.com', 'password' => bcrypt(123456), 'is_librarian' => true],
-            ['name' => 'student', 'email' => 'student@example.com', 'password' => bcrypt(123456), 'is_librarian' => false]
+            ['name' => 'librarian', 'email' => 'librarian@example.com', 'password' => bcrypt(123456), 'student' => false],
+            ['name' => 'student', 'email' => 'student@example.com', 'password' => bcrypt(123456), 'student' => true]
         ];
 
         foreach($users as $user) {

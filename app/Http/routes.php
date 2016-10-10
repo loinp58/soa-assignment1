@@ -10,14 +10,30 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/', [
-    'as' => 'books.index',
-    'uses' => 'BooksController@index'
-]);
-Route::get('/{id}', [
-    'as' => 'books.show',
-    'uses' => 'BooksController@show'
-]);
+Route::group(['middleware' => 'web'], function() {
+    Route::auth();
+
+    Route::get('/', [
+        'as' => 'books.index',
+        'uses' => 'BooksController@index'
+    ]);
+
+    Route::get('/books', [
+        'as' => 'books.index',
+        'uses' => 'BooksController@index'
+    ]);
+
+    Route::get('/books/{id}', [
+        'as' => 'books.show',
+        'uses' => 'BooksController@show'
+    ]);
+
+    Route::get('/search', [
+        'as' => 'books.search',
+        'uses' => 'BooksController@search'
+    ]);
+});
+
 Route::get('api/books', [
     'as' => 'api.index',
     'uses' => 'ApiController@index'
